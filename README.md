@@ -1,58 +1,58 @@
 # LRU Cache (JavaScript)
 
-A Least Recently Used (LRU) Cache implementation in JavaScript with $O(1)$ time complexity operations and optional TTL (Time-To-Live) expiration support.
+A Least Recently Used (LRU) Cache implementation in JavaScript supporting $O(1)$ average time complexity operations and optional TTL (Time-To-Live) expiration.
 
 ---
 
-## 📌 Data Structures Used & Rationale
+## Data Structures Used & Rationale
 
 1. **Hash Map (`Map`)**:
-   - Stores key-to-node references.
-   - Provides **$O(1)$ average time complexity** for accessing node memory addresses during `get` and `put` operations.
+   - Maps keys directly to Doubly Linked List node references.
+   - Enables **$O(1)$ average time complexity** for key lookups during `get` and `put` operations.
 
 2. **Doubly Linked List (`Node` with `prev` and `next` pointers)**:
-   - Maintains the sequence of keys based on their recency of use.
-   - Uses sentinel **`head`** and **`tail`** dummy nodes to simplify pointer operations without null checks.
-   - Allows **$O(1)$ node relocation** to the head (Most Recently Used) and **$O(1)$ node eviction** from the tail (Least Recently Used).
+   - Maintains insertion and access recency order.
+   - Utilizes sentinel **`head`** and **`tail`** dummy nodes to eliminate boundary pointer checks.
+   - Facilitates **$O(1)$ node promotion** to the head (Most Recently Used) and **$O(1)$ node eviction** from the tail (Least Recently Used).
 
 ---
 
-## 🔄 How LRU Ordering is Maintained
+## How LRU Ordering is Maintained
 
-- **Most Recently Used (MRU)** nodes are kept right after the `head` sentinel node.
-- **Least Recently Used (LRU)** nodes are positioned right before the `tail` sentinel node.
+- **Most Recently Used (MRU)** nodes reside immediately after the `head` sentinel node.
+- **Least Recently Used (LRU)** nodes reside immediately before the `tail` sentinel node.
 - **`get(key)`**:
-  - If the key exists, its node is detached from its current position and inserted right after `head`.
-  - Returns `-1` if the key is not found or has expired.
+  - If the key exists, its node is detached from its current position and moved right after `head`.
+  - Returns `-1` if the key is missing or expired.
 - **`put(key, value, [ttlMs])`**:
   - If the key already exists, updates its value and moves its node to `head`.
-  - If it's a new key, creates a node, adds it after `head`, and maps the key.
-  - If cache size exceeds `capacity`, the node right before `tail` is removed from both the list and the `Map`.
+  - If it is a new key, creates a node, inserts it after `head`, and registers it in the Map.
+  - If cache size exceeds `capacity`, the node immediately preceding `tail` is removed from both the list and the Map.
 
 ---
 
-## ⏰ Complexity
+## Time and Space Complexity
 
 | Operation | Time Complexity | Space Complexity | Description |
 |---|---|---|---|
 | `get(key)` | **$O(1)$** | $O(1)$ | Hash Map lookup + $O(1)$ node pointer updates. |
 | `put(key, value)` | **$O(1)$** | $O(1)$ | Hash Map lookup/insert + $O(1)$ node insertion or eviction. |
-| **Overall Cache** | — | **$O(N)$** | Where $N$ is the specified cache capacity. |
+| **Overall Cache** | — | **$O(N)$** | Where $N$ is the specified cache capacity limit. |
 
 ---
 
-## ⏱️ Optional Feature: TTL (Expiration) Support
+## TTL (Expiration) Support
 
-- **Approach**: An optional `ttlMs` argument can be passed to `put(key, value, ttlMs)`. The node sets `expiresAt = Date.now() + ttlMs`.
-- **Expiration Handling**: Expiration is checked lazily during `get()`. If `Date.now() > node.expiresAt`, the node is deleted from the `Map` and the linked list, returning `-1`.
-- **Trade-offs**: Lazy deletion avoids CPU and event-loop overhead caused by active background cleanup timers, preserving pure $O(1)$ execution performance.
+- **Approach**: An optional `ttlMs` argument can be passed to `put(key, value, ttlMs)`. The node records `expiresAt = Date.now() + ttlMs`.
+- **Expiration Handling**: Expiration is evaluated lazily during `get()`. If `Date.now() > node.expiresAt`, the node is evicted from both the Map and the linked list, returning `-1`.
+- **Trade-offs**: Lazy evaluation avoids event-loop timer overhead, preserving $O(1)$ execution guarantees without background thread/timer management.
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### Prerequisites
-- Node.js installed
+- Node.js (v14+ recommended)
 
 ### 1. Run Execution Demo
 ```bash
