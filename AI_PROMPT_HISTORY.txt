@@ -1,0 +1,28 @@
+================================================================================
+AI PROMPT HISTORY & INTERACTION LOG
+Project: LRU Cache Implementation (JavaScript / Node.js)
+================================================================================
+
+Prompt 1: Initial Architecture & Boilerplate Generation
+--------------------------------------------------------------------------------
+"I need to implement an LRU Cache in JavaScript (Node.js) supporting get(key) and put(key, value) operations in O(1) average time complexity. Please suggest an optimal combination of data structures to achieve O(1) operations, and generate an initial class structure with sentinel nodes for boundary handling."
+
+Prompt 2: Optional TTL Feature Design & Evaluation
+--------------------------------------------------------------------------------
+"I want to add optional Time-To-Live (TTL) expiration support to the LRU Cache. What are the trade-offs between using active background timers (setTimeout/setInterval) vs lazy evaluation on get() calls? Please provide an implementation using lazy evaluation to avoid event-loop overhead."
+
+Prompt 3: Code Refactoring & Style Normalization
+--------------------------------------------------------------------------------
+"Please clean up the source code across LRUCache.js and demo.js. Remove excessive docstrings and boilerplate comments, keeping only concise comments so the implementation looks clean, professional, and maintainable."
+
+Prompt 4: Unit Testing & Verification Suite
+--------------------------------------------------------------------------------
+"Generate a lightweight unit testing script (test/test.js) without external test framework dependencies that validates capacity enforcement, LRU eviction order, item updates, error handling for invalid capacities, and TTL expiration behavior."
+
+Prompt 5: Professional Documentation (README.md) Generation
+--------------------------------------------------------------------------------
+"Generate a comprehensive README.md file explaining the data structures used (Map + Doubly Linked List), LRU ordering mechanism, O(1) time and O(N) space complexity analysis, TTL expiration approach, and step-by-step run instructions for tests and demo execution."
+
+Prompt 6: Documentation Formatting Refinement
+--------------------------------------------------------------------------------
+"Format the README.md and terminal output scripts to present a clean, professional aesthetic without emojis or informal markdown artifacts, ensuring strict alignment with technical documentation standards."
