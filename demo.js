@@ -1,10 +1,5 @@
 const LRUCache = require('./src/LRUCache');
 
-function logCacheState(cache) {
-  const items = cache.getCacheState().map(i => `${i.key}:${i.value}`).join(' -> ');
-  console.log(`[Cache State (MRU -> LRU)]: [ ${items} ]`);
-}
-
 console.log("=================================================");
 console.log("LRU CACHE EXECUTION DEMONSTRATION");
 console.log("=================================================\n");
@@ -16,15 +11,12 @@ console.log('Action: put("A", 10)');
 cache.put("A", 10);
 console.log('Action: put("B", 20)');
 cache.put("B", 20);
-logCacheState(cache);
 
 console.log('\nAction: get("A")');
 console.log('Result:', cache.get("A"), '(Moved "A" to MRU)');
-logCacheState(cache);
 
 console.log('\nAction: put("C", 30) -- Exceeds capacity, evicts "B" (LRU)');
 cache.put("C", 30);
-logCacheState(cache);
 
 console.log('\nVerification:');
 console.log('get("B") ->', cache.get("B"), '(Evicted key returns -1)');
