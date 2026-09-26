@@ -1,7 +1,7 @@
 const LRUCache = require('./src/LRUCache');
 
 console.log("=================================================");
-console.log("LRU CACHE EXECUTION DEMONSTRATION");
+console.log("      LRU CACHE EXECUTION DEMONSTRATION");
 console.log("=================================================\n");
 
 console.log("--- 1. Basic Operations & Eviction (Capacity = 2) ---");
@@ -42,6 +42,6 @@ setTimeout(() => {
   console.log('get("X") ->', ttlCache.get("X"), '(Expired key returns -1)');
   console.log('get("Y") ->', ttlCache.get("Y"), '(Active key returns value)');
   console.log("\n=================================================");
-  console.log("DEMONSTRATION COMPLETE");
+  console.log("             DEMONSTRATION COMPLETE");
   console.log("=================================================");
 }, 1200);
