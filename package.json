@@ -1,0 +1,13 @@
+{
+  "name": "lru-cache-js",
+  "version": "1.0.0",
+  "description": "High-performance O(1) LRU Cache implementation with TTL support in JavaScript",
+  "main": "src/LRUCache.js",
+  "scripts": {
+    "start": "node demo.js",
+    "test": "node test/test.js"
+  },
+  "keywords": ["lru", "cache", "data-structures", "javascript", "ttl"],
+  "author": "",
+  "license": "MIT"
+}
